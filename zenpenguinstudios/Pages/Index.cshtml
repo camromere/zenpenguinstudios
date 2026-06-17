@@ -1,0 +1,100 @@
+@page
+@{
+    ViewData["Title"] = "Calm, Handmade, Colorful";
+}
+
+@section Head {
+    <style>
+        /* Home-only styles */
+        .hero {
+            background:
+                radial-gradient(circle at 50% 0%, rgba(72,168,168,.18), transparent 60%),
+                var(--paper);
+            padding: 56px 0 24px;
+            text-align: center;
+        }
+        .hero img.penguin {
+            width: min(340px, 70vw);
+            height: auto;
+            filter: drop-shadow(0 18px 30px rgba(48,48,96,.18));
+        }
+        .hero h1 { font-size: clamp(2.2rem,5vw,3.4rem); margin-top: 8px; }
+        .hero h1 .t { color: var(--teal); }
+        .hero h1 .v { color: var(--violet); }
+        .hero p.lede {
+            font-size: 1.15rem; color: var(--muted);
+            max-width: 52ch; margin: 14px auto 0;
+        }
+
+        .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+        .path {
+            border-radius: var(--radius); padding: 40px 34px;
+            border: 1px solid var(--line); background: #fff;
+            display: flex; flex-direction: column;
+        }
+        .path.coloring { background: linear-gradient(180deg,#fff,#fdf6ef); }
+        .path.crochet  { background: linear-gradient(180deg,#fff,#f4f1f9); }
+        .path .tag {
+            font-weight: 700; font-size: .78rem; letter-spacing: .16em;
+            text-transform: uppercase; margin-bottom: 14px;
+        }
+        .path.coloring .tag { color: #e0457b; }
+        .path.crochet .tag  { color: var(--violet); }
+        .path img.logo { width: 100%; max-width: 300px; height: auto; margin: 4px 0 18px; }
+        .path h2 { font-size: 1.6rem; }
+        .path p { color: var(--muted); flex: 1; }
+        .path .btn { align-self: flex-start; margin-top: 18px; }
+
+        .crochet-art { width: 110px; height: 110px; margin: 6px 0 18px; }
+
+        .story { background: var(--paper-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+        .story .wrap { max-width: 760px; text-align: center; }
+        .story p { font-size: 1.12rem; color: var(--ink); }
+
+        @@media (max-width: 820px) { .paths { grid-template-columns: 1fr; } }
+    </style>
+}
+
+<section class="hero">
+    <div class="wrap">
+        <img class="penguin" src="~/assets/zen-penguin-logo.png" alt="Zen Penguin Studios — a meditating penguin holding a crochet hook and a colored pencil" />
+        <h1>Small projects. <span class="t">Calm</span> hands. <span class="v">Bright</span> finishes.</h1>
+        <p class="lede">Zen Penguin Studios makes things meant to slow you down — intricate mandala animal coloring books and handmade crochet patterns you can lose a quiet afternoon in.</p>
+    </div>
+</section>
+
+<section>
+    <div class="wrap paths">
+
+        <div class="path coloring">
+            <span class="tag">Animandalas Coloring Books</span>
+            <img class="logo" src="~/assets/animandalas-logo.png" alt="Animandalas" />
+            <h2>Mandala animals, ready for your colors</h2>
+            <p>Detailed black-and-white animal portraits woven with zentangle patterns — printed for real coloring with pencils, markers, and gel pens.</p>
+            <a href="/coloring-books" class="btn btn-rainbow">Explore the books</a>
+        </div>
+
+        <div class="path crochet">
+            <span class="tag">Handmade Crochet</span>
+            <svg class="crochet-art" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="52" r="34" fill="#48a8a8" />
+                <path d="M24 40 Q50 30 76 44 M22 52 Q50 44 78 56 M26 64 Q50 58 74 68 M40 22 Q56 50 44 82 M58 21 Q44 52 60 82"
+                      fill="none" stroke="#2f7d7d" stroke-width="2.4" stroke-linecap="round" />
+                <path d="M74 44 q14 -6 16 -20" fill="none" stroke="#48a8a8" stroke-width="3.4" stroke-linecap="round" />
+            </svg>
+            <h2>Patterns made to be made</h2>
+            <p>Crochet pattern PDFs with clear instructions and charts — designed to be cozy, repeatable, and a little meditative. Coming to the shop soon.</p>
+            <a href="/crochet" class="btn btn-violet">See what's coming</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="story">
+    <div class="wrap">
+        <div class="section-head" style="margin-bottom:0">
+            <h2>Why a penguin, meditating?</h2>
+            <p>Because the best creative work happens when you're calm and unhurried. Whether you're filling in a fox's mandala or working a row of stitches, Zen Penguin Studios is about the quiet pleasure of making something by hand, one small piece at a time.</p>
+        </div>
+    </div>
+</section>

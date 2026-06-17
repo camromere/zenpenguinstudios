@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — Zen Penguin Studios</title>
+    <meta name="description" content="@(ViewData["Description"] ?? "Zen Penguin Studios makes mandala animal coloring books and handmade crochet patterns — small, calming creative projects for grown-ups.")" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/styles.css" />
+
+    @await RenderSectionAsync("Head", required: false)
+</head>
+<body>
+
+    <header>
+        <div class="wrap nav">
+            <a href="/" class="nav-brand">
+                <img src="~/assets/zen-penguin-logo.png" alt="Zen Penguin Studios" />
+                <span>Zen Penguin Studios</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/coloring-books">Coloring Books</a>
+                <a href="/crochet">Crochet</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <img src="~/assets/zen-penguin-logo.png" alt="" />
+            <span class="fbrand">Zen Penguin Studios</span>
+            <p>Calming coloring books &amp; handmade crochet.</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/coloring-books">Coloring Books</a>
+                <a href="/crochet">Crochet</a>
+            </div>
+            <p class="fine">© @DateTime.Now.Year Zen Penguin Studios. All rights reserved.</p>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,113 @@
+@page "/coloring-books"
+@{
+    ViewData["Title"] = "Animandalas Coloring Books";
+    ViewData["Description"] = "Animandalas by Zen Penguin Studios: intricate mandala animal coloring books for grown-ups. Volume 1, Wild & Majestic, features 25 detailed animal pages.";
+}
+
+@section Head {
+    <style>
+        .cb-hero {
+            background:
+                radial-gradient(circle at 50% 0%, rgba(224,69,123,.12), transparent 60%),
+                var(--paper);
+            text-align: center; padding: 56px 0 20px;
+        }
+        .cb-hero img { width: min(520px, 88vw); height: auto; }
+        .cb-hero p.lede {
+            font-size: 1.15rem; color: var(--muted);
+            max-width: 54ch; margin: 18px auto 0;
+        }
+
+        .why-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+        .why-card {
+            background: #fff; border: 1px solid var(--line);
+            border-radius: var(--radius); padding: 28px 24px;
+        }
+        .why-card .num {
+            font-family: "Fraunces", serif; font-weight: 700;
+            width: 36px; height: 36px; display: grid; place-items: center;
+            border-radius: 50%; color: #fff; margin-bottom: 14px;
+        }
+        .why-card:nth-child(1) .num { background: #e0457b; }
+        .why-card:nth-child(2) .num { background: var(--teal); }
+        .why-card:nth-child(3) .num { background: #3aa9d4; }
+        .why-card h3 { font-size: 1.25rem; }
+        .why-card p { color: var(--muted); margin: 0; }
+
+        .feature { background: var(--paper-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+        .feature-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 52px; align-items: center; }
+        .book-cover {
+            background: var(--navy-deep); border-radius: 12px; aspect-ratio: 17/22;
+            box-shadow: 0 20px 50px rgba(38,38,77,.35);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: var(--paper); text-align: center; padding: 30px; position: relative; overflow: hidden;
+        }
+        .book-cover::before {
+            content: ""; position: absolute; top:0; left:0; right:0; height:5px; background: var(--rainbow);
+        }
+        .book-cover .vol { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:#f2c84b; font-weight:700; margin-bottom:10px; }
+        .book-cover .title { font-family:"Fraunces",serif; font-size:1.9rem; line-height:1.1; color: var(--paper); }
+        .feature ul { list-style:none; padding:0; margin:20px 0 28px; }
+        .feature li { padding-left:30px; position:relative; margin-bottom:12px; }
+        .feature li::before { content:"✦"; position:absolute; left:0; color:#e0457b; }
+
+        @@media (max-width: 820px) {
+            .why-cards { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .book-cover { max-width: 280px; margin: 0 auto; }
+        }
+    </style>
+}
+
+<section class="cb-hero">
+    <div class="wrap">
+        <img src="~/assets/animandalas-logo.png" alt="Animandalas — mandala animal coloring books" />
+        <p class="lede">Intricate mandala animals, drawn for slow evenings and steady hands. Every page is a small act of quiet.</p>
+    </div>
+</section>
+
+<section>
+    <div class="wrap">
+        <div class="section-head">
+            <h2>Made to be colored, not just admired</h2>
+            <p>Every Animandalas page starts as a clean black-and-white drawing and grows into whatever you make it.</p>
+        </div>
+        <div class="why-cards">
+            <div class="why-card">
+                <div class="num">1</div>
+                <h3>One animal, one mandala</h3>
+                <p>Each page pairs a single creature with intricate zentangle patterns woven into its fur and feathers. Detailed, but never cramped.</p>
+            </div>
+            <div class="why-card">
+                <div class="num">2</div>
+                <h3>Printed for real coloring</h3>
+                <p>8.5×11 pages, single-sided layouts, and clean outlines that hold up to colored pencils, markers, and gel pens alike.</p>
+            </div>
+            <div class="why-card">
+                <div class="num">3</div>
+                <h3>A coloring journey</h3>
+                <p>Sample pages show each animal three ways — outline, lifelike, and rainbow — so you can plan your palette before the first stroke.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature">
+    <div class="wrap feature-grid">
+        <div class="book-cover">
+            <span class="vol">Volume One</span>
+            <span class="title">Wild &amp; Majestic</span>
+        </div>
+        <div>
+            <h2>Wild &amp; Majestic</h2>
+            <p style="color:var(--muted); font-size:1.05rem;">The first Animandalas volume: 25 mandala animal portraits, from elk to owl, each ready for the colors you choose.</p>
+            <ul>
+                <li>25 single-sided mandala animal pages</li>
+                <li>8.5×11 inches, premium white paper</li>
+                <li>Clean line art with no gray tones to muddy your colors</li>
+                <li>A "coloring journey" reference for every animal</li>
+            </ul>
+            <a href="#" class="btn btn-rainbow">Coming soon on Amazon</a>
+        </div>
+    </div>
+</section>
