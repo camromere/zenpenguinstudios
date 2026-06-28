@@ -1,0 +1,86 @@
+name: Deploy to SmarterASP.NET
+
+on:
+  push:
+    branches:
+      - master   # change to 'main' if this repo's default branch is main
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore zenpenguinstudios.csproj
+
+      - name: Publish
+        run: dotnet publish zenpenguinstudios.csproj --configuration Release --output ./publish --no-restore
+
+      - name: Create version file
+        shell: pwsh
+        run: |
+          $version = [PSCustomObject]@{
+            deployedAt = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss") + " UTC"
+            commit = "${{ github.sha }}".Substring(0, 7)
+          } | ConvertTo-Json
+          Set-Content ./publish/version.json $version
+
+      - name: Take app offline via FTP
+        shell: pwsh
+        run: |
+          $ftp = "ftp://win8092.site4now.net/app_offline.htm"
+          $user = "${{ secrets.FTP_USERNAME }}"
+          $pass = "${{ secrets.FTP_PASSWORD }}"
+          $content = [System.Text.Encoding]::UTF8.GetBytes("offline")
+          $request = [System.Net.FtpWebRequest]::Create($ftp)
+          $request.Method = [System.Net.WebRequestMethods+Ftp]::UploadFile
+          $request.Credentials = New-Object System.Net.NetworkCredential($user, $pass)
+          $request.ContentLength = $content.Length
+          $stream = $request.GetRequestStream()
+          $stream.Write($content, 0, $content.Length)
+          $stream.Close()
+          Write-Host "app_offline.htm uploaded"
+          Start-Sleep -Seconds 30
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: win8092.site4now.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./publish/
+          server-dir: ./
+          dangerous-clean-slate: false
+
+      - name: Wait for app to stop
+        shell: pwsh
+        run: Start-Sleep -Seconds 15
+
+      - name: Deploy via FTP (second pass)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: win8092.site4now.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./publish/
+          server-dir: ./
+          dangerous-clean-slate: false
+
+      - name: Bring app back online
+        shell: pwsh
+        run: |
+          $ftp = "ftp://win8092.site4now.net/app_offline.htm"
+          $user = "${{ secrets.FTP_USERNAME }}"
+          $pass = "${{ secrets.FTP_PASSWORD }}"
+          $request = [System.Net.FtpWebRequest]::Create($ftp)
+          $request.Method = [System.Net.WebRequestMethods+Ftp]::DeleteFile
+          $request.Credentials = New-Object System.Net.NetworkCredential($user, $pass)
+          $request.GetResponse()
+          Write-Host "app_offline.htm deleted - site is back online"
