@@ -37,16 +37,9 @@
         .feature { background: var(--paper-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
         .feature-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 52px; align-items: center; }
         .book-cover {
-            background: var(--navy-deep); border-radius: 12px; aspect-ratio: 17/22;
+            width: 100%; border-radius: 12px;
             box-shadow: 0 20px 50px rgba(38,38,77,.35);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: var(--paper); text-align: center; padding: 30px; position: relative; overflow: hidden;
         }
-        .book-cover::before {
-            content: ""; position: absolute; top:0; left:0; right:0; height:5px; background: var(--rainbow);
-        }
-        .book-cover .vol { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:#f2c84b; font-weight:700; margin-bottom:10px; }
-        .book-cover .title { font-family:"Fraunces",serif; font-size:1.9rem; line-height:1.1; color: var(--paper); }
         .feature ul { list-style:none; padding:0; margin:20px 0 28px; }
         .feature li { padding-left:30px; position:relative; margin-bottom:12px; }
         .feature li::before { content:"✦"; position:absolute; left:0; color:#e0457b; }
@@ -94,10 +87,7 @@
 
 <section class="feature">
     <div class="wrap feature-grid">
-        <div class="book-cover">
-            <span class="vol">Volume One</span>
-            <span class="title">Wild &amp; Majestic</span>
-        </div>
+        <img class="book-cover" src="~/assets/animandalas-vol1-cover.png" alt="Animandalas Wild &amp; Majestic, Volume I book cover" />
         <div>
             <h2>Wild &amp; Majestic</h2>
             <p style="color:var(--muted); font-size:1.05rem;">The first Animandalas volume: 25 mandala animal portraits, from elk to owl, each ready for the colors you choose.</p>
@@ -108,6 +98,23 @@
                 <li>A "coloring journey" reference for every animal</li>
             </ul>
             <a href="https://www.amazon.com/Animandalas-Wild-Majestic-Adult-Coloring/dp/B0H61PVMYW/ref=sr_1_1?crid=1INCI5L7NS6X0&dib=eyJ2IjoiMSJ9.NeHjVnsAwmpYMCNtFOYtVaj49fAjYFDl4nDnj11-6ZMeUTOczzq8XQq7pGIj-tyYzFEG_oe9eHousmiAfVc90skS1yXqZzFcivToomiUY-7w_kt3BTqWyprKF_JKIC67TqIh4hOL9g-38ThoT1e9LJsEquqI74PPoBN1C7ylvnkmHBe_ZYlXOAv_t3GbC7bkJCjhxBEmAkj7PjSRZY8FLL9UQVvTu2tSMSxRA6DqaSQ.L3S9PjQ5HC3YNkHksEScyMa64ohfTp4isqIyOiJMc68&dib_tag=se&keywords=zen+penguin+studios&qid=1786385436&sprefix=%2Caps%2C160&sr=8-1" class="btn btn-rainbow" target="_blank" rel="noopener">Now available on Amazon!!</a>
+        </div>
+    </div>
+</section>
+
+<section class="feature">
+    <div class="wrap feature-grid">
+        <img class="book-cover" src="~/assets/animandalas-vol2-cover.png" alt="Animandalas Beloved Companions, Volume II book cover" />
+        <div>
+            <h2>Beloved Companions</h2>
+            <p style="color:var(--muted); font-size:1.05rem;">The second Animandalas volume: 25 mandala animal portraits, from cat to cow, each ready for the colors you choose.</p>
+            <ul>
+                <li>38 single-sided mandala animal pages</li>
+                <li>8.5×11 inches, premium white paper</li>
+                <li>Clean line art with no gray tones to muddy your colors</li>
+                <li>A "coloring journey" reference for every animal</li>
+            </ul>
+            <a href="" class="btn btn-rainbow" target="_blank" rel="noopener">Coming soon on Amazon!!</a>
         </div>
     </div>
 </section>
