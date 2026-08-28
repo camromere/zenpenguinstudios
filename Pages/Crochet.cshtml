@@ -1,7 +1,7 @@
 @page "/crochet"
 @{
     ViewData["Title"] = "Handmade Crochet Items";
-    ViewData["Description"] = "Handmade Crochet items from Zen Penguin Studios. Coming soon.";
+    ViewData["Description"] = "One-of-a-kind handmade crochet plushies and amigurumi from Zen Penguin Studios, available on Etsy. Made-to-order commissions welcome.";
 }
 
 @section Head {
@@ -28,10 +28,51 @@
         .cr-card h3 { font-size:1.25rem; color: var(--violet); }
         .cr-card p { color: var(--muted); margin:0; }
 
-        .notify { background: var(--paper-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); text-align:center; }
+        /* ---------- Shop listings ---------- */
+        .shop { background: var(--paper-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+        .shop-grid {
+            display: grid;
+            /* auto-fit collapses the empty tracks, so a single listing centers
+               instead of hugging the left edge; more listings fill out the row. */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 340px));
+            gap: 28px;
+            justify-content: center;
+        }
+        .shop-card {
+            display: flex; flex-direction: column;
+            background:#fff; border:1px solid var(--line); border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(38,38,77,.10);
+        }
+        .shop-card img {
+            width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+            display: block; background: var(--paper-soft);
+        }
+        .shop-card .body { padding: 24px; display:flex; flex-direction:column; flex:1; }
+        .shop-card h3 { font-size: 1.35rem; margin-bottom: .3em; }
+        .shop-card .price { font-weight: 700; color: var(--violet); font-size: 1.15rem; margin: 0 0 10px; }
+        .shop-card p.blurb { color: var(--muted); margin: 0 0 16px; }
+        .shop-card .meta {
+            list-style: none; padding: 0; margin: 0 0 22px;
+            font-size: .92rem; color: var(--muted);
+        }
+        .shop-card .meta li { padding-left: 22px; position: relative; margin-bottom: 6px; }
+        .shop-card .meta li::before { content:"✦"; position:absolute; left:0; color: var(--teal); }
+        .shop-card .btn { align-self: flex-start; margin-top: auto; }
+
+        .tag {
+            display:inline-block; padding: 4px 12px; border-radius: 999px;
+            background: var(--teal); color:#fff; font-weight:700; font-size:.72rem;
+            letter-spacing:.07em; text-transform:uppercase; margin-bottom: 12px;
+        }
+
+        .notify { text-align:center; }
         .notify .wrap { max-width: 640px; }
 
-        @@media (max-width: 820px) { .cr-cards { grid-template-columns: 1fr; } }
+        @@media (max-width: 820px) {
+            .cr-cards { grid-template-columns: 1fr; }
+            .shop-grid { grid-template-columns: 1fr; }
+        }
     </style>
 }
 
@@ -43,9 +84,9 @@
                   fill="none" stroke="#2f7d7d" stroke-width="2.6" stroke-linecap="round" />
             <path d="M76 42 q16 -6 18 -22" fill="none" stroke="#48a8a8" stroke-width="3.6" stroke-linecap="round" />
         </svg>
-        <h1>Handmade, crochet items, made to order, <span class="v">coming soon</span></h1>
-      
-        <span class="pill">In the works</span>
+        <h1>Handmade crochet items, ready to ship as well as <span class="v">made to order.</span></h1>
+        <p class="lede">Every piece is crocheted by hand, one motif at a time — no two ever quite alike.</p>
+        <span class="pill">Now on Etsy</span>
     </div>
 </section>
 
@@ -53,21 +94,55 @@
     <div class="wrap">
         <div class="section-head">
             <h2>What to expect</h2>
-            <p>Patterns designed to be genuinely followable — not just pretty pictures.</p>
+            <p>Handmade crochet items</p>
         </div>
         <div class="cr-cards">
             <div class="cr-card">
-                <h3>Clear instructions</h3>
-                <p>Step-by-step written directions alongside stitch charts, so you can follow whichever way suits you.</p>
+                <h3>One of a kind</h3>
+                <p>Each piece is worked by hand from start to finish, so the colors and motifs you see are the only ones exactly like them.</p>
             </div>
             <div class="cr-card">
-                <h3>Tested &amp; sized</h3>
-                <p>Each pattern worked up and checked, with yarn weights, hook sizes, and finished measurements spelled out.</p>
+                <h3>Built to be hugged</h3>
+                <p>Soft yarn, premium polyester fiberfill, and safety-lock eyes fastened to hold up to years of squeezing and display alike.</p>
             </div>
             <div class="cr-card">
-                <h3>Instant PDF</h3>
-                <p>Delivered as clean, printable PDFs you can keep — available through our shop when they launch.</p>
+                <h3>Made to order</h3>
+                <p>Love a piece but want it in your own palette? Commissions are open — message me to talk colors, size, and timeline.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="shop">
+    <div class="wrap">
+        <div class="section-head">
+            <h2>In the shop</h2>
+            <p>Ready to ship from the Zen Penguin Studios Etsy shop.</p>
+        </div>
+        <div class="shop-grid">
+
+            <article class="shop-card">
+                <img src="~/assets/happypotomous.jpg"
+                     alt="Happypotomous, a hand-crocheted hippopotamus made of yellow, purple, lavender, and blue African flower hexagon motifs" />
+                <div class="body">
+                    <span class="tag">Ready to ship</span>
+                    <h3>Happypotomous</h3>
+                    <p class="price">$179.00</p>
+                    <p class="blurb">
+                        A big, cheerful hippo built from dozens of individually crocheted African flower
+                        hexagons — sunny yellow, deep black, soft lavender, and a pop of sky blue, all
+                        joined by hand into one rounded, huggable body.
+                    </p>
+                    <ul class="meta">
+                        <li>Approx. 22–24&quot; long &times; 10&quot; tall</li>
+                        <li>African flower join-as-you-go technique</li>
+                        <li>Safety-lock eyes, premium polyester fiberfill</li>
+                        <li>One of a kind — only one exists</li>
+                    </ul>
+                    <a href="https://www.etsy.com/listing/4564036366" class="btn btn-violet" target="_blank" rel="noopener">View on Etsy</a>
+                </div>
+            </article>
+
         </div>
     </div>
 </section>
@@ -75,10 +150,9 @@
 <section class="notify">
     <div class="wrap">
         <div class="section-head" style="margin-bottom:0">
-            <h2>Want to know when they're ready?</h2>
-            <p>Patterns will be released through Etsy and Ravelry. Check back soon — links will land right here.</p>
-            <!-- When ready, replace href with your Etsy/Ravelry shop URLs -->
-            <a href="#" class="btn btn-violet" style="margin-top:8px;">Shop coming soon</a>
+            <h2>Want something in your own colors?</h2>
+            <p>Commissions are open for made-to-order pieces in this style. Message me through the shop to talk palette, size, and timeline.</p>
+            <a href="https://www.etsy.com/shop/ZenPenguinStudios" class="btn btn-violet" style="margin-top:8px;" target="_blank" rel="noopener">Visit the Etsy shop</a>
         </div>
     </div>
 </section>
